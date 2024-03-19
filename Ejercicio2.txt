@@ -1,0 +1,51 @@
+namespace consola;
+class Program
+{
+    static void Main(string[] args)
+    {
+        Factura factura = new Factura("AOXP22", "tornillo pequeña", 3, 3);
+
+        factura.EstablecerNumeroPieza("LAQ09");
+        factura.EstablecerDescripcionPieza("clavo de acero");
+        factura.EstablecerCantidadPieza(15);
+        factura.EstablecerPrecioPieza(0);
+
+
+        Console.WriteLine($"{factura.ObtenerNumeroPieza()}");
+        Console.WriteLine($"{factura.ObtenerDescripcionPieza()}");
+        Console.WriteLine($"{factura.ObtenerCantidadPieza()}");
+        Console.WriteLine($"{factura.ObtenerPrecioPieza()}");
+
+        Console.WriteLine($"El monto de la factura es: {factura.ObtenerMontoFactura()}");
+    }
+
+}
+
+public class Factura
+{
+    public string _numeroPieza { get; set; }
+    public string _descripcionPieza { get; set; }
+    public int _cantidad { get; set; }
+    public int _precio { get; set; }
+
+    public Factura(string numeroPieza, string descripcionPieza, int cantidad, int precio)
+    {
+        _numeroPieza = numeroPieza;
+        _descripcionPieza = descripcionPieza;
+        _cantidad = (cantidad > 0) ? cantidad : 0;
+        _precio = (precio > 0) ? cantidad : 0;
+    }
+
+    public string ObtenerNumeroPieza() => $"El numero de pieza es: {_numeroPieza}";
+    public string ObtenerDescripcionPieza() => $"La descripción de la pieza es: {_descripcionPieza}";
+    public string ObtenerCantidadPieza() => $"La candidad de piezas es: {_cantidad}";
+    public string ObtenerPrecioPieza() => $"El precio de la pieza es: {_precio}";
+
+    public string EstablecerNumeroPieza(string nuevoNumero) => _numeroPieza = nuevoNumero;
+    public string EstablecerDescripcionPieza(string nuevaDesc) => _descripcionPieza = nuevaDesc;
+    public int EstablecerCantidadPieza(int nuevaCantidad) => _cantidad = nuevaCantidad;
+    public int EstablecerPrecioPieza(int nuevoPrecio) => _precio = nuevoPrecio;
+
+    public int ObtenerMontoFactura() => _cantidad * _precio;
+
+}

@@ -1,0 +1,69 @@
+namespace consola;
+class Program
+{
+    static void Main(string[] args)
+    {
+        
+        Cuenta cuenta1 = new Cuenta(200);
+        Cuenta cuenta2 = new Cuenta(200);
+
+        cuenta1.Credit(1);
+        cuenta1.Cargar(1510);
+        cuenta1.ObtenerSaldo();
+
+        
+        cuenta2.Credit(1);
+        cuenta2.Cargar(151);
+        cuenta2.ObtenerSaldo();
+
+    }
+
+}
+
+public class Cuenta
+{
+    public int _saldo { get; set; }
+
+    public Cuenta(int saldo)
+    {
+        if (saldo > 0)
+        {
+            _saldo = saldo;
+
+        }
+        else
+        {
+            _saldo = 0;
+            Console.WriteLine($"El saldo inicial es invalido");
+        }
+    }
+
+    public void Credit(int agregarSaldo)
+    {
+        _saldo += agregarSaldo;
+        Console.WriteLine($"El nuevo saldo es: {_saldo}");
+        
+    }
+
+    public void Cargar(int retirarSaldo)
+    {
+        if (retirarSaldo > _saldo)
+        {
+            Console.WriteLine($"El monto a cargar excede el saldo de la cuenta");
+        }
+        else
+        {
+            int nuevoSaldo =  _saldo-retirarSaldo ;
+            _saldo = nuevoSaldo;
+        Console.WriteLine($"El nuevo saldo es: {_saldo}");
+
+        }
+    }
+
+    public void ObtenerSaldo()
+    {
+        Console.WriteLine($"El saldo es: {_saldo}");
+
+    }
+
+}
